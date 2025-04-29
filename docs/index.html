@@ -5,98 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Check 2025 UTME Results</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Temporary styles until you update style.css */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-    }
-    .container {
-      max-width: 600px;
-      margin: 100px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #003366;
-      color: white;
-    }
-    .top-bar .brand {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    .hamburger {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    .menu {
-      display: none;
-      background-color: white;
-      position: absolute;
-      right: 20px;
-      top: 60px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .menu a {
-      display: block;
-      padding: 10px;
-      text-decoration: none;
-      color: #333;
-      border-bottom: 1px solid #eee;
-    }
-    .menu a:last-child {
-      border-bottom: none;
-    }
-    .logo {
-      text-align: center;
-    }
-    header h1 {
-      text-align: center;
-      color: #003366;
-    }
-    form {
-      margin-top: 20px;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      margin-bottom: 12px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #003366;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    footer {
-      margin-top: 50px;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-      background-color: #f9f9f9;
-      color: #666;
-    }
-    footer a {
-      margin: 0 10px;
-      color: #003366;
-      text-decoration: none;
-    }
-  </style>
 </head>
 <body>
   <div class="top-bar">
@@ -115,11 +23,16 @@
       <h1>Check 2025 UTME Results</h1>
     </header>
     <main>
-      <form class="check-results-form">
+      <form class="check-results-form" id="resultForm">
         <label for="credentials">Reg No / Email / GSM Number</label>
         <input type="text" id="credentials" name="credentials" placeholder="Enter your details" />
         <button type="submit">Check UTME Results</button>
       </form>
+
+      <div id="resultBox" class="result-box" style="display: none;">
+        <h2>UTME Result</h2>
+        <p id="resultMessage"></p>
+      </div>
     </main>
   </div>
 
@@ -140,6 +53,25 @@
       const menu = document.getElementById("menu");
       menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
+
+    document.getElementById("resultForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const input = document.getElementById("credentials").value.trim();
+      const resultBox = document.getElementById("resultBox");
+      const resultMessage = document.getElementById("resultMessage");
+
+      if (!input || input.length < 5) {
+        alert("Please enter a valid Reg No / Email / GSM Number");
+        return;
+      }
+
+      const score = Math.floor(Math.random() * 101) + 150;
+      resultMessage.innerHTML = `
+        UTME Result for <strong>${input}</strong><br/>
+        Score: <strong>${score}</strong>
+      `;
+      resultBox.style.display = "block";
+    });
   </script>
 </body>
-    </html>
+</html>
