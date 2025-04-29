@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background-color: #009688;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header .logo img {
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+main {
+    padding: 20px;
+}
+
+.check-results-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.check-results-form label {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.check-results-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.check-results-form button {
+    padding: 10px;
+    font-size: 1rem;
+    color: white;
+    background-color: #009688;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.check-results-form button:hover {
+    background-color: #00796b;
+}
