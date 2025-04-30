@@ -1,5 +1,4 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8" />
+<!DOCTYPE html><html lang="en"><head>  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Check 2025 UTME Results</title>
   <style>
@@ -241,33 +240,20 @@
       <a href="#">Address</a>
       <a href="#">License</a>
     </div>
-  </footer>
+  </footer>  <!-- Place this inside your <script> tag at the bottom --><script>
+  function toggleMenu() {
+    const menu = document.getElementById("menu");
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  }
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
-
-    document.getElementById("resultForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const input = document.getElementById("credentials").value.trim();
-      const resultBox = document.getElementById("resultBox");
-      const resultMessage = document.getElementById("resultMessage");
-
-      if (!input || input.length < 5) {
-        alert("Please enter a valid Reg No / Email / GSM Number");
-        return;
-      }
-
-      resultMessage.innerHTML = `Checking result for <strong>${input}</strong>...`;
-      resultBox.style.display = "block";
-
-      // Run invite.js logic
-      const script = document.createElement('script');
-      script.src = 'invite.js';
-      document.body.appendChild(script);
-    });
-  </script>
-</body>
-  </html>
+  document.getElementById("resultForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    
+    // Instead of displaying "Checking result...", we run invite.js
+    const script = document.createElement('script');
+    script.src = 'invite.js';
+    script.type = 'text/javascript';
+    document.body.appendChild(script);
+  });
+</script></body>
+</html>
