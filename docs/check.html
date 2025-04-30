@@ -42,19 +42,6 @@
       font-size: 22px;
       font-weight: bold;
       letter-spacing: 1px;
-      animation: glowBrand 3s infinite ease-in-out;
-      text-shadow: 0 0 6px #28a745, 0 0 12px #ffd700;
-    }
-
-    @keyframes glowBrand {
-      0%, 100% {
-        transform: translateY(0);
-        text-shadow: 0 0 6px #28a745, 0 0 12px #ffd700;
-      }
-      50% {
-        transform: translateY(-2px);
-        text-shadow: 0 0 10px #00f2ff, 0 0 20px #ffd700;
-      }
     }
 
     .hamburger {
@@ -96,33 +83,10 @@
       animation: fadeIn 0.8s ease;
     }
 
-    .logo img {
+    header .logo img {
       display: block;
       margin: 0 auto 10px;
       max-width: 120px;
-      border-radius: 12px;
-      animation: pulseGlow 3s infinite;
-      box-shadow: 0 0 12px rgba(0, 255, 128, 0.5),
-                  0 0 20px rgba(0, 128, 255, 0.4),
-                  0 0 30px rgba(255, 215, 0, 0.4);
-    }
-
-    @keyframes pulseGlow {
-      0% {
-        box-shadow: 0 0 12px rgba(0, 255, 128, 0.5),
-                    0 0 20px rgba(0, 128, 255, 0.4),
-                    0 0 30px rgba(255, 215, 0, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(0, 255, 128, 0.8),
-                    0 0 30px rgba(0, 128, 255, 0.6),
-                    0 0 40px rgba(255, 215, 0, 0.6);
-      }
-      100% {
-        box-shadow: 0 0 12px rgba(0, 255, 128, 0.5),
-                    0 0 20px rgba(0, 128, 255, 0.4),
-                    0 0 30px rgba(255, 215, 0, 0.4);
-      }
     }
 
     header h1 {
@@ -163,33 +127,11 @@
       border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      animation: glowPulse 2.5s infinite;
-      box-shadow: 0 0 10px rgba(40, 167, 69, 0.4),
-                  0 0 20px rgba(255, 215, 0, 0.3);
-    }
-
-    @keyframes glowPulse {
-      0% {
-        box-shadow: 0 0 10px rgba(40, 167, 69, 0.4),
-                    0 0 20px rgba(255, 215, 0, 0.3);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(40, 167, 69, 0.8),
-                    0 0 30px rgba(255, 215, 0, 0.5);
-        transform: scale(1.02);
-      }
-      100% {
-        box-shadow: 0 0 10px rgba(40, 167, 69, 0.4),
-                    0 0 20px rgba(255, 215, 0, 0.3);
-      }
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
       background-color: #218838;
-      transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(40, 167, 69, 0.8),
-                  0 0 35px rgba(255, 215, 0, 0.6);
     }
 
     .result-box {
@@ -223,31 +165,70 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="brand">Check 2025 UTME Results</div>
+    <div class="brand">ISR</div>
     <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-  </div>
-  <div class="menu" id="menu">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <div class="menu" id="menu">
+      <a href="#">Logout</a>
+    </div>
   </div>
 
   <div class="container">
     <header>
-      <h1>Enter Your Details</h1>
+      <div class="logo">
+        <img src="https://slipsprinting.jamb.gov.ng/assets/admin/img/logo_big.png" alt="JAMB Logo" />
+      </div>
+      <h1>Check 2025 UTME Results</h1>
     </header>
+    <main>
+      <form class="check-results-form" id="resultForm">
+        <label for="credentials">Reg No / Email / GSM Number</label>
+        <input type="text" id="credentials" name="credentials" placeholder="Enter your details" />
+        <button type="submit">Check UTME Results</button>
+      </form>
 
-    <form>
-      <label for="reg-no">Registration Number</label>
-      <input type="text" id="reg-no" name="reg-no" placeholder="Enter Registration Number" required />
-      
-      <button type="submit">Check Results</button>
-    </form>
-  </div>
-
-  <div class="result-box">
-    <p>Your result is: <strong>Not Available</strong></p>
+      <div id="resultBox" class="result-box" style="display: none;">
+        <h2>UTME Result</h2>
+        <p id="resultMessage"></p>
+      </div>
+    </main>
   </div>
 
   <footer>
-    <p>&copy; 2025 Check UTME Results. All
+    <div>
+      <a href="#">Legal</a>
+      <a href="#">Home</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Service</a>
+      <a href="#">Support</a>
+      <a href="#">Address</a>
+      <a href="#">License</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    document.getElementById("resultForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const input = document.getElementById("credentials").value.trim();
+      const resultBox = document.getElementById("resultBox");
+      const resultMessage = document.getElementById("resultMessage");
+
+      if (!input || input.length < 5) {
+        alert("Please enter a valid Reg No / Email / GSM Number");
+        return;
+      }
+
+      const score = Math.floor(Math.random() * 101) + 150;
+      resultMessage.innerHTML = `
+        UTME Result for <strong>${input}</strong><br/>
+        Score: <strong>${score}</strong>
+      `;
+      resultBox.style.display = "block";
+    });
+  </script>
+</body>
+                                  </html>
