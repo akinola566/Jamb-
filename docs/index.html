@@ -3,29 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to ISR</title>
+  <title>ISR - Institute of Student Records</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      color: #111;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .brand {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #2c3e50;
+      letter-spacing: 1px;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .info-box {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+
+    .info-box h2 {
+      margin-bottom: 10px;
+      color: #2e86de;
+    }
+
+    .info-box p {
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      background: #2ecc71;
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #27ae60;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    footer ul li {
+      display: inline;
+      margin: 0 10px;
+    }
+
+    footer a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <div class="main-container">
-    <header class="hero-header">
-      <h1 class="brand-name">ISR</h1>
-      <p class="subtext">Welcome to the official portal of the <strong>Institute of Student Records (ISR)</strong></p>
-      <p class="message">You can now access your academic records securely. Don’t be scared to view your results — we’re here to support you every step of the way.</p>
-      <a href="check.html" class="get-started-button">Get Started</a>
-    </header>
 
-    <footer class="footer">
-      <ul class="footer-links">
+  <div class="container">
+    <h1 class="brand">ISR</h1>
+    <p class="tagline">Institute of Student Records</p>
+
+    <div class="info-box">
+      <h2>Welcome!</h2>
+      <p>Hello users, welcome to <strong>ISR</strong> – the official student result portal.</p>
+      <p>You can find out your academic records instantly. Don’t be afraid to check your results — they are accurate, verified, and confidential.</p>
+      <p><strong>ISR</strong> stands for:</p>
+      <ul style="text-align:left; margin-top:10px;">
+        <li>• Institute of Student Records</li>
+        <li>• Internal Score Report</li>
+        <li>• Instant Student Review</li>
+        <li>• International Scholar Registry</li>
+        <li>• Indexed Student Results</li>
+      </ul>
+      <a href="check.html" class="btn">Get Started</a>
+    </div>
+
+    <footer>
+      <p>© 2025 ISR. All rights reserved.</p>
+      <ul>
         <li><a href="#">Home</a></li>
-        <li><a href="#">Privacy and Policy</a></li>
+        <li><a href="#">Privacy Policy</a></li>
         <li><a href="#">Contact Support</a></li>
         <li><a href="#">License</a></li>
-        <li><a href="#">ISR</a></li>
         <li><a href="#">Company</a></li>
         <li><a href="#">Address</a></li>
       </ul>
     </footer>
   </div>
+
 </body>
-</html>
+        </html>
