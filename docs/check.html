@@ -163,11 +163,33 @@
       border-radius: 6px;
       font-size: 16px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      animation: glowPulse 2.5s infinite;
+      box-shadow: 0 0 10px rgba(40, 167, 69, 0.4),
+                  0 0 20px rgba(255, 215, 0, 0.3);
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.4),
+                    0 0 20px rgba(255, 215, 0, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(40, 167, 69, 0.8),
+                    0 0 30px rgba(255, 215, 0, 0.5);
+        transform: scale(1.02);
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.4),
+                    0 0 20px rgba(255, 215, 0, 0.3);
+      }
     }
 
     button:hover {
       background-color: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(40, 167, 69, 0.8),
+                  0 0 35px rgba(255, 215, 0, 0.6);
     }
 
     .result-box {
@@ -201,70 +223,31 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="brand">ISR</div>
+    <div class="brand">Check 2025 UTME Results</div>
     <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
-    <div class="menu" id="menu">
-      <a href="#">Logout</a>
-    </div>
+  </div>
+  <div class="menu" id="menu">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
   </div>
 
   <div class="container">
     <header>
-      <div class="logo">
-        <img src="https://slipsprinting.jamb.gov.ng/assets/admin/img/logo_big.png" alt="JAMB Logo" />
-      </div>
-      <h1>Check 2025 UTME Results</h1>
+      <h1>Enter Your Details</h1>
     </header>
-    <main>
-      <form class="check-results-form" id="resultForm">
-        <label for="credentials">Reg No / Email / GSM Number</label>
-        <input type="text" id="credentials" name="credentials" placeholder="Enter your details" />
-        <button type="submit">Check UTME Results</button>
-      </form>
 
-      <div id="resultBox" class="result-box" style="display: none;">
-        <h2>UTME Result</h2>
-        <p id="resultMessage"></p>
-      </div>
-    </main>
+    <form>
+      <label for="reg-no">Registration Number</label>
+      <input type="text" id="reg-no" name="reg-no" placeholder="Enter Registration Number" required />
+      
+      <button type="submit">Check Results</button>
+    </form>
+  </div>
+
+  <div class="result-box">
+    <p>Your result is: <strong>Not Available</strong></p>
   </div>
 
   <footer>
-    <div>
-      <a href="#">Legal</a>
-      <a href="#">Home</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Service</a>
-      <a href="#">Support</a>
-      <a href="#">Address</a>
-      <a href="#">License</a>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("menu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
-
-    document.getElementById("resultForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const input = document.getElementById("credentials").value.trim();
-      const resultBox = document.getElementById("resultBox");
-      const resultMessage = document.getElementById("resultMessage");
-
-      if (!input || input.length < 5) {
-        alert("Please enter a valid Reg No / Email / GSM Number");
-        return;
-      }
-
-      const score = Math.floor(Math.random() * 101) + 150;
-      resultMessage.innerHTML = `
-        UTME Result for <strong>${input}</strong><br/>
-        Score: <strong>${score}</strong>
-      `;
-      resultBox.style.display = "block";
-    });
-  </script>
-</body>
-</html>
+    <p>&copy; 2025 Check UTME Results. All
