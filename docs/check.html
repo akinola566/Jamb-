@@ -42,6 +42,19 @@
       font-size: 22px;
       font-weight: bold;
       letter-spacing: 1px;
+      animation: glowBrand 3s infinite ease-in-out;
+      text-shadow: 0 0 6px #28a745, 0 0 12px #ffd700;
+    }
+
+    @keyframes glowBrand {
+      0%, 100% {
+        transform: translateY(0);
+        text-shadow: 0 0 6px #28a745, 0 0 12px #ffd700;
+      }
+      50% {
+        transform: translateY(-2px);
+        text-shadow: 0 0 10px #00f2ff, 0 0 20px #ffd700;
+      }
     }
 
     .hamburger {
@@ -83,10 +96,33 @@
       animation: fadeIn 0.8s ease;
     }
 
-    header .logo img {
+    .logo img {
       display: block;
       margin: 0 auto 10px;
       max-width: 120px;
+      border-radius: 12px;
+      animation: pulseGlow 3s infinite;
+      box-shadow: 0 0 12px rgba(0, 255, 128, 0.5),
+                  0 0 20px rgba(0, 128, 255, 0.4),
+                  0 0 30px rgba(255, 215, 0, 0.4);
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 12px rgba(0, 255, 128, 0.5),
+                    0 0 20px rgba(0, 128, 255, 0.4),
+                    0 0 30px rgba(255, 215, 0, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(0, 255, 128, 0.8),
+                    0 0 30px rgba(0, 128, 255, 0.6),
+                    0 0 40px rgba(255, 215, 0, 0.6);
+      }
+      100% {
+        box-shadow: 0 0 12px rgba(0, 255, 128, 0.5),
+                    0 0 20px rgba(0, 128, 255, 0.4),
+                    0 0 30px rgba(255, 215, 0, 0.4);
+      }
     }
 
     header h1 {
@@ -231,4 +267,4 @@
     });
   </script>
 </body>
-                                  </html>
+</html>
