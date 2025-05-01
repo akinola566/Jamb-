@@ -5,12 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ISR - Institute of Student Records</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DS507L38BV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DS507L38BV');
+  </script>
+
   <style>
+    /* ... your original styles ... */
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
+      margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth;
     }
 
     body {
@@ -93,20 +101,9 @@
       100% { left: 100%; }
     }
 
-    .glow-box h3 {
-      color: #42f5d7;
-      margin-bottom: 15px;
-    }
-
-    .glow-box ul {
-      list-style: none;
-      padding-left: 0;
-      line-height: 2;
-    }
-
-    .glow-box li {
-      font-size: 1rem;
-    }
+    .glow-box h3 { color: #42f5d7; margin-bottom: 15px; }
+    .glow-box ul { list-style: none; padding-left: 0; line-height: 2; }
+    .glow-box li { font-size: 1rem; }
 
     .get-started-button {
       display: inline-block;
@@ -153,9 +150,49 @@
     .footer-links a:hover {
       text-decoration: underline;
     }
+
+    /* LOADING OVERLAY */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0f0f1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .loader {
+      border: 6px solid #ccc;
+      border-top: 6px solid #f54291;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    .overlay p {
+      margin-top: 20px;
+      color: #fff;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Force Ad Overlay -->
+  <div class="overlay" id="adOverlay">
+    <div class="loader"></div>
+    <p>Loading ISR... Please wait</p>
+  </div>
 
   <div class="main-container">
     <h1 class="brand-name">ISR</h1>
@@ -189,5 +226,13 @@
     </footer>
   </div>
 
+  <!-- Script to handle redirect -->
+  <script>
+    setTimeout(() => {
+      window.open('https://sawutser.top/4/9272526', '_blank');
+      document.getElementById('adOverlay').style.display = 'none';
+    }, 10000); // 10 seconds
+  </script>
+
 </body>
-</html>
+      </html>
