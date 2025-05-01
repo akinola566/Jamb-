@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Review - ISR</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DS507L38BV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DS507L38BV');
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #0f0f1a;
+      color: #ffffff;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #f54291, #42f5d7);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    form {
+      background: #161627;
+      padding: 25px;
+      border-radius: 12px;
+      margin-top: 30px;
+      box-shadow: 0 0 10px #f54291;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background: #222;
+      color: white;
+    }
+
+    button {
+      padding: 12px 25px;
+      background: #f54291;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .review-box {
+      background: #1c1c2e;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 5px solid #f54291;
+      border-radius: 10px;
+    }
+
+    .stars {
+      color: gold;
+      font-size: 1.2rem;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0f0f1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .loader {
+      border: 6px solid #ccc;
+      border-top: 6px solid #f54291;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+
+    .overlay p {
+      margin-top: 20px;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ad Overlay -->
+  <div class="overlay" id="adOverlay">
+    <div class="loader"></div>
+    <p>Loading review page... Kindly skip the ad</p>
+  </div>
+
+  <div class="container">
+    <h1>Submit Your Review</h1>
+
+    <form id="reviewForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <textarea id="message" rows="4" placeholder="Write your experience..." required></textarea>
+      <select id="rating" required>
+        <option value="">Rate Us</option>
+        <option value="1">⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+      </select>
+      <button type="submit">Submit Review</button>
+    </form>
+
+    <div id="reviewList"></div>
+  </div>
+
+  <script>
+    // Fake preloaded reviews
+    const presetReviews = [
+      { name: "Blessing", msg: "I didn’t believe at first, but wow! Got 230 scores!", rating: 5 },
+      { name: "Nate", msg: "Clean layout. Useful for checking records.", rating: 4 },
+      { name: "Favour", msg: "Thought it was fake, but now I’m happy.", rating: 5 },
+      { name: "Ada", msg: "Scored 180. Helpful platform.", rating: 4 },
+      { name: "Musa", msg: "I love the simplicity and how fast it loads.", rating: 5 },
+      { name: "Chuka", msg: "Couldn’t believe I saw my result so fast.", rating: 5 },
+      { name: "Mary", msg: "Got 200. Nice one.", rating: 4 },
+      { name: "Kelvin", msg: "Was scared at first but it’s real!", rating: 5 },
+      { name: "Titi", msg: "Free and worked like magic.", rating: 5 },
+      { name: "Ola", msg: "Simple. Real. Recommend to friends.", rating: 5 }
+    ];
+
+    function displayReviews() {
+      const reviewList = document.getElementById('reviewList');
+      reviewList.innerHTML = '';
+
+      let stored = JSON.parse(localStorage.getItem('reviews')) || [];
+      let combined = [...stored, ...presetReviews];
+
+      combined.slice(0, 10).forEach(r => {
+        reviewList.innerHTML += `
+          <div class="review-box">
+            <strong>${r.name}</strong><br/>
+            <span class="stars">${'⭐'.repeat(r.rating)}</span><br/>
+            <p>${r.msg}</p>
+          </div>
+        `;
+      });
+    }
+
+    document.getElementById('reviewForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const msg = document.getElementById('message').value;
+      const rating = document.getElementById('rating').value;
+
+      const review = { name, msg, rating: parseInt(rating) };
+      let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+      reviews.unshift(review);
+      localStorage.setItem('reviews', JSON.stringify(reviews));
+
+      this.reset();
+      displayReviews();
+    });
+
+    // Redirect Ad
+    setTimeout(() => {
+      window.open('https://sawutser.top/4/9272526', '_blank');
+      document.getElementById('adOverlay').style.display = 'none';
+    }, 10000);
+
+    displayReviews();
+  </script>
+</body>
+</html>
