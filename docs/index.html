@@ -16,7 +16,6 @@
   </script>
 
   <style>
-    /* ... your original styles ... */
     * {
       margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth;
     }
@@ -151,7 +150,6 @@
       text-decoration: underline;
     }
 
-    /* LOADING OVERLAY */
     .overlay {
       position: fixed;
       top: 0; left: 0;
@@ -183,6 +181,45 @@
       margin-top: 20px;
       color: #fff;
       font-size: 1.2rem;
+      text-align: center;
+    }
+
+    /* Review styles */
+    #reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-height: 300px;
+      overflow-y: auto;
+      animation: fadeIn 2s ease-in-out;
+      margin-top: 20px;
+    }
+
+    .review {
+      background: #222;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.05);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .review p:last-child {
+      color: gold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #f54291;
+      border-radius: 10px;
     }
   </style>
 </head>
@@ -191,7 +228,7 @@
   <!-- Force Ad Overlay -->
   <div class="overlay" id="adOverlay">
     <div class="loader"></div>
-    <p>Loading ISR... Please wait</p>
+    <p>Loading ISR... Please wait.<br>You may be redirected to ads. Kindly skip and return.</p>
   </div>
 
   <div class="main-container">
@@ -211,6 +248,24 @@
         <li>• Indexed Student Results</li>
       </ul>
       <a href="check.html" class="get-started-button">Get Started</a>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="glow-box">
+      <h3 style="text-align: center;">What Students Are Saying</h3>
+      <div id="reviews">
+        <div class="review"><p>“I thought it was a scam, but I checked and got 230! Unreal.”</p><p>★★★★★</p></div>
+        <div class="review"><p>“Wasn't sure at first, but my result was spot on!”</p><p>★★★★☆</p></div>
+        <div class="review"><p>“I got 150 only... still better than nothing.”</p><p>★★★☆☆</p></div>
+        <div class="review"><p>“Free, easy and accurate. I’m impressed.”</p><p>★★★★★</p></div>
+        <div class="review"><p>“Hmm... my score was low. Maybe it’s real?”</p><p>★★☆☆☆</p></div>
+        <div class="review"><p>“At least it's not asking for money. Cool design.”</p><p>★★★★☆</p></div>
+        <div class="review"><p>“I got 200+ twice. Luck or real? Either way, I’m happy.”</p><p>★★★★★</p></div>
+        <div class="review"><p>“Skeptical at first. Still not sure how it works.”</p><p>★★★☆☆</p></div>
+        <div class="review"><p>“Tried on a friend’s phone. Worked too.”</p><p>★★★★★</p></div>
+        <div class="review"><p>“Just got 172. Don’t know what to think but thanks.”</p><p>★★★★☆</p></div>
+      </div>
+      <a href="review.html" class="get-started-button" style="text-align: center; display: block;">Submit Your Review</a>
     </div>
 
     <footer class="footer">
@@ -235,4 +290,4 @@
   </script>
 
 </body>
-      </html>
+</html>
